@@ -5,7 +5,7 @@ export default function Contact() {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Nevermind don&apos;t contact us. This is just a demo page.
+            Nevermind don&#39;t contact us. This is just a demo page.
           </p>
         </div>
       </section>
