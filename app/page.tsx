@@ -11,8 +11,6 @@ export default function Home() {
   const [dvdColor, setDvdColor] = useState('#34d399');
   const [hitCorner, setHitCorner] = useState(false);
   const [showTrollTransform, setShowTrollTransform] = useState(false);
-  const [nearCorner, setNearCorner] = useState(false);
-  const [trollTease, setTrollTease] = useState(false);
   const [cornerDistance, setCornerDistance] = useState(1000);
   const animationRef = useRef<number | null>(null);
 
@@ -52,7 +50,6 @@ export default function Home() {
       const nearBottomLeft = newX < 50 && newY > window.innerHeight - 150;
       const nearBottomRight = newX > window.innerWidth - 150 && newY > window.innerHeight - 150;
       const isNearCorner = nearTopLeft || nearTopRight || nearBottomLeft || nearBottomRight;
-      setNearCorner(isNearCorner);
 
       // Calculate distance to nearest corner for troll intensity
       const distanceToTopLeft = Math.sqrt(newX * newX + newY * newY);
@@ -62,13 +59,6 @@ export default function Home() {
       
       const minDistance = Math.min(distanceToTopLeft, distanceToTopRight, distanceToBottomLeft, distanceToBottomRight);
       setCornerDistance(minDistance);
-
-      // Show troll tease when approaching corner
-      if (isNearCorner && !hitCorner) {
-        setTrollTease(true);
-      } else {
-        setTrollTease(false);
-      }
 
       // Check for exact corner collision
       const hitTopLeft = newX <= 0 && newY <= 0;
@@ -82,7 +72,6 @@ export default function Home() {
         actualCornerHit = true;
         setHitCorner(true);
         setShowTrollTransform(true);
-        setTrollTease(false);
         setTimeout(() => {
           setShowTrollTransform(false);
           setHitCorner(false);
